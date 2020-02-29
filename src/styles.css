@@ -1,0 +1,8 @@
+.filter-bar {
+  display: flex;
+}
+
+.breed-image {
+  width: 200px;
+  height: auto;
+}

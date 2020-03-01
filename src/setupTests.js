@@ -1,3 +1,3 @@
 import "@testing-library/jest-dom/extend-expect";
 
-jest.setTimeout(3000000);
+jest.setTimeout(100000);

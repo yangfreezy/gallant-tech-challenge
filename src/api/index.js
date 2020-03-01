@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const getDogData = () => {
+const getDogData = (setDogBreedsList, setDogBreedsObject) => {
   let breedList = [];
   let breedData = {};
 
@@ -27,13 +27,15 @@ const getDogData = () => {
     return { list: breedList, data: breedData };
   };
 
-  const setList = async () => {
+  const setList = async (setDogBreedsList, setDogBreedsObject) => {
     let { list, data } = await getDogsList(breedList, breedData);
+    setDogBreedsList(list);
+    setDogBreedsObject(data);
     localStorage.setItem("masterList", JSON.stringify(list));
     localStorage.setItem("masterObject", JSON.stringify(data));
     return { list, data };
   };
-  return setList();
+  return setList(setDogBreedsList, setDogBreedsObject);
 };
 
 export default getDogData;

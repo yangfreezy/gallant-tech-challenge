@@ -17,11 +17,11 @@ function App() {
 
   useEffect(() => {
     if (!dogBreedsList.length || !Object.keys(dogBreedsObject).length) {
-      const { list, data } = getDogData();
+      const { list, data } = getDogData(setDogBreedsList, setDogBreedsObject);
       setDogBreedsList(list);
       setDogBreedsObject(data);
     }
-  }, [dogBreedsList, dogBreedsObject]);
+  }, []);
 
   const handleChange = e => {
     setInputState(e.target.value);
@@ -81,7 +81,7 @@ function App() {
               />
             </div>
           ))
-        ) : dogBreedsList.length ? (
+        ) : dogBreedsList ? (
           dogBreedsList.map(data => (
             <div className="breed-card">
               <div className="breed-title">
@@ -96,7 +96,20 @@ function App() {
             </div>
           ))
         ) : (
-          <div className="loading">"Retrieving data..."</div>
+          <div className="loading">
+            <div>
+              Retrieving data... In the meantime, check out this adorable
+              puppy..
+            </div>
+            <iframe
+              title={"Check out these puppies in the meantime"}
+              src="http://www.youtube.com/embed/71Kn-pyScfY"
+              width="600"
+              height="337.5"
+              frameBorder="0"
+              allowFullScreen
+            />
+          </div>
         )}
       </div>
     </div>

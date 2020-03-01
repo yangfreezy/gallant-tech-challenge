@@ -12,6 +12,7 @@ function App() {
     JSON.parse(localStorage.getItem("masterObject")) || {}
   );
   const [filteredBreedsList, setFilteredBreedsList] = useState([]);
+  const [showFilteredBreedsList, setShowFilteredBreedsList] = useState(false);
   const [inputState, setInputState] = useState("");
 
   useEffect(() => {
@@ -21,8 +22,6 @@ function App() {
       setDogBreedsObject(data);
     }
   }, [dogBreedsList, dogBreedsObject]);
-
-  useEffect(() => {}, [filteredBreedsList]);
 
   const handleChange = e => {
     setInputState(e.target.value);
@@ -36,51 +35,71 @@ function App() {
       .map(breed => dogBreedsObject[breed])
       .filter(val => val);
     setFilteredBreedsList(filtered);
+    setShowFilteredBreedsList(true);
     setInputState("");
   };
 
   const handleClear = () => {
+    setShowFilteredBreedsList(false);
     setFilteredBreedsList([]);
   };
 
   return (
     <div className="App">
-      <form className="filter-bar" onSubmit={handleSubmit}>
-        <label name="filter"> Filter results: </label>
-        <input
-          type="text"
-          name="filter"
-          value={inputState}
-          onChange={handleChange}
-        />
-        <input type="submit" value="submit" />
-        <button onClick={handleClear}> clear </button>
-      </form>
-      {filteredBreedsList.length ? (
-        filteredBreedsList.map(data => (
-          <div>
-            <div> {"Breed: " + data.primaryBreed}</div>
-            <img
-              className="breed-image"
-              src={data.image}
-              alt={data.primaryBreed}
-            />
+      <div className="header"> Dog Breeds </div>
+      <div className="form-container">
+        <form className="filter-bar" onSubmit={handleSubmit}>
+          <label name="filter"> Filter Breeds: </label>
+          <input
+            className="filter-input"
+            type="text"
+            name="filter"
+            value={inputState}
+            onChange={handleChange}
+          />
+          <div className="button-bar">
+            {showFilteredBreedsList ? (
+              <button className="button" onClick={handleClear}>
+                Clear
+              </button>
+            ) : null}
           </div>
-        ))
-      ) : dogBreedsList.length ? (
-        dogBreedsList.map(data => (
-          <div>
-            <div> {"Breed: " + data.primaryBreed}</div>
-            <img
-              className="breed-image"
-              src={data.image}
-              alt={data.primaryBreed}
-            />
-          </div>
-        ))
-      ) : (
-        <div>{"Retrieving data..."}</div>
-      )}
+        </form>
+      </div>
+      <div className="breed-list">
+        {showFilteredBreedsList ? (
+          filteredBreedsList.map(data => (
+            <div>
+              <div className="breed-title">
+                {data.primaryBreed[0].toUpperCase() +
+                  data.primaryBreed.substr(1)}
+              </div>
+              <img
+                className="breed-image"
+                src={data.image}
+                alt={data.primaryBreed}
+              />
+            </div>
+          ))
+        ) : dogBreedsList.length ? (
+          dogBreedsList.map(data => (
+            <div className="breed-card">
+              <div className="breed-title">
+                {" "}
+                {data.primaryBreed[0].toUpperCase() +
+                  data.primaryBreed.substr(1)}
+              </div>
+              <img
+                className="breed-image"
+                src={data.image}
+                alt={data.primaryBreed}
+              />
+            </div>
+          ))
+        ) : (
+          <div>{"Retrieving data..."}</div>
+        )}
+      </div>
     </div>
   );
 }

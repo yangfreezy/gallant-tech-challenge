@@ -14,6 +14,11 @@ body {
   font-weight: bold;
 }
 
+.loading {
+  font-size: 28px;
+  text-align: center;
+}
+
 .form-container {
   display: flex;
   margin-top: 15px;

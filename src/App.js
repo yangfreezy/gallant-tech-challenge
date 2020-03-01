@@ -97,7 +97,7 @@ function App() {
             </div>
           ))
         ) : (
-          <div>{"Retrieving data..."}</div>
+          <div className="loading">"Retrieving data..."</div>
         )}
       </div>
     </div>

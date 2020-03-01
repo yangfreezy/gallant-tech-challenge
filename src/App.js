@@ -66,7 +66,7 @@ function App() {
           </div>
         </form>
       </div>
-      <div className="breed-list">
+      <div className="breed-list" data-testid="BreedList">
         {showFilteredBreedsList ? (
           filteredBreedsList.map(data => (
             <div>

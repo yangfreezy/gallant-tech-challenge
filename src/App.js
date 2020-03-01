@@ -21,6 +21,7 @@ function App() {
       setDogBreedsList(list);
       setDogBreedsObject(data);
     }
+    // eslint-disable-next-line
   }, []);
 
   const handleChange = e => {

@@ -102,7 +102,7 @@ function App() {
               puppy..
             </div>
             <iframe
-              title={"Check out these puppies in the meantime"}
+              title="Check out these puppies in the meantime"
               src="http://www.youtube.com/embed/71Kn-pyScfY"
               width="600"
               height="337.5"

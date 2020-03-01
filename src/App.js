@@ -16,7 +16,7 @@ function App() {
   const [inputState, setInputState] = useState("");
 
   useEffect(() => {
-    if (!dogBreedsList.length || !Object.keys(dogBreedsObject || {}).length) {
+    if (!dogBreedsList.length || !Object.keys(dogBreedsObject).length) {
       const { list, data } = getDogData();
       setDogBreedsList(list);
       setDogBreedsObject(data);

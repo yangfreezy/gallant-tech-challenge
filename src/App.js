@@ -85,7 +85,6 @@ function App() {
           dogBreedsList.map(data => (
             <div className="breed-card">
               <div className="breed-title">
-                {" "}
                 {data.primaryBreed[0].toUpperCase() +
                   data.primaryBreed.substr(1)}
               </div>
